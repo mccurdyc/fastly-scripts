@@ -1,11 +1,11 @@
 #!/bin/bash
 
-function usage {
-    printf 'Usage:\n\tmeta-fastly <pattern> <fastly-command> ["latest"] ["random"]\n'
+function fst-usage {
+    printf 'Usage:\n\tfst-wrap <pattern> <fastly-command> ["latest"] ["random"]\n'
     return 0
 }
 
-function mfst-run {
+function fst-run-cmd {
   svc_name="$(echo "$1" | awk -F '\\s\\s+' '{print $1}')"
   id="$(echo "$1" | awk -F '\\s\\s+' '{print $2}')"
   version="$(echo "$1" | awk -F '\\s\\s+' '{print $4}')"
@@ -36,10 +36,10 @@ function mfst-run {
   printf "\n"
 }
 
-function meta-fastly {
+function fst-wrap-run {
   while read -r -u 3 svc; do
     if [[ "$1" == "" || "$2" == "" ]]; then
-      usage
+      fst-usage
       return 0
     fi
 
@@ -49,7 +49,7 @@ function meta-fastly {
 
     svc_name="$(echo "$svc" | awk -F '\\s\\s+' '{print $1}')"
     echo "Apply to Fastly Service: $svc_name"
-    mfst-run "$svc" "$2" "$3" "$4"
+    fst-run-cmd "$svc" "$2" "$3" "$4"
 
   done 3< <(fastly service list | tail -n +2)
 }

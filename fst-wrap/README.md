@@ -10,7 +10,7 @@ In your Zsh profile (e.g. `${HOME}/.zshrc`), define the following functions:
 ```bash
 $ export FASTLY_SCRIPTS_PATH=<desired/path/to/scripts>/fastly-scripts
 $ git clone git@github.com:mccurdyc/fastly-scripts.git $FASTLY_SCRIPTS_PATH
-$ echo 'fst-wrap() {bash -c "source '$FASTLY_SCRIPTS_PATH'/fst-wrap/fst-wrap.sh; fst-wrap $1 $2 $3 $4"}' >> ${HOME}/.zshrc
+$ echo 'fst-wrap() { bash -c "source ${FASTLY_SCRIPTS_PATH/fst-wrap}/fst-wrap.sh; fst-wrap-run $1 $2 $3 $4"' >> ${HOME}/.zshrc }
 $ source ${HOME}/.zshrc
 $ which fst-wrap
 ```
